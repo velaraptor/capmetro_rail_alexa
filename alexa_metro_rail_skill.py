@@ -9,7 +9,7 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_core.handler_input import HandlerInput
-
+from directions_api import main
 from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
@@ -17,7 +17,10 @@ sb = SkillBuilder()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
+response = main()
+speech = ("The next {line} coming to {departing_station} will leave at "
+          "{departure_time_local} {day_indicator} and arrive at the {arrival_station}"
+          " at {arrival_time_local}").format(**response)
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -27,7 +30,8 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speech_text = "Welcome to the Alexa Skills Kit, you can say hello!"
+        speech_text = "Welcome to MetroRailNext, " \
+                      "where you can find the next metro rail to leave from your current location"
 
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Hello World", speech_text)).set_should_end_session(
