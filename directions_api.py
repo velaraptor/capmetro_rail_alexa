@@ -10,7 +10,19 @@ def get_timezone(epoch):
     # get time in UTC
     tz = pytz.timezone('America/Chicago')
     dt = datetime.fromtimestamp(epoch).astimezone(tz)
-    return dt.strftime('%Y-%m-%d %H:%M:%S')
+    return dt.strftime('%H:%M %p')
+
+
+def get_today(epoch):
+    tz = pytz.timezone('America/Chicago')
+    day = datetime.now(tz).day
+    schedule = datetime.fromtimestamp(epoch).astimezone(tz).day
+    if schedule > day:
+        return 'tomorrow'
+    elif schedule == day:
+        return 'today'
+    else:
+        return None
 
 
 def get_relevant_metro_times(response):
@@ -32,12 +44,13 @@ def get_relevant_metro_times(response):
                                     break
     arrival_timestamp = get_timezone(arrival_time) if arrival_time is not None else None
     departure_timestamp = get_timezone(departure_time) if departure_time is not None else None
-
+    day_time = get_today(arrival_time) if arrival_time is not None else None
     return {'arrival_time_epoch': arrival_time,
             'departure_time_epoch': departure_time,
             'line': name,
             'arrival_time_local': arrival_timestamp,
-            'departure_time_local': departure_timestamp }
+            'departure_time_local': departure_timestamp,
+            'day_indicator': day_time}
 
 
 def log():
@@ -49,6 +62,7 @@ def log():
 
 def main(location="Austin Convention Center"):
     start = time.time()
+    departing_station = "Crestview Station"
     log().info('Running metro rail info')
     key = os.getenv('API_KEY')
     gmap_client = googlemaps.Client(key=key)
@@ -58,9 +72,12 @@ def main(location="Austin Convention Center"):
     log().info('End Location: {}'.format(location))
 
     try:
-        response = gmap_client.directions("Crestview Station", location, mode="transit", transit_mode='rail',
+        response = gmap_client.directions(departing_station, location, mode="transit", transit_mode='rail',
                                           departure_time=now)
         final_response = get_relevant_metro_times(response)
+        final_response['departing_station'] = departing_station
+        final_response['arrival_station'] = location
+
     except Exception as e:
         log().error('Could not run: {}'.format(e))
         final_response = None
