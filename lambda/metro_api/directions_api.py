@@ -10,7 +10,7 @@ def get_timezone(epoch):
     # get time in UTC
     tz = pytz.timezone('America/Chicago')
     dt = datetime.fromtimestamp(epoch).astimezone(tz)
-    return dt.strftime('%H:%M %p')
+    return dt.strftime('%I:%M %p')
 
 
 def get_today(epoch):
@@ -37,10 +37,10 @@ def get_relevant_metro_times(response):
                         if steps.get('travel_mode', '') == 'TRANSIT':
                             transit_details = steps.get('transit_details')
                             if transit_details:
-                                arrival_time = transit_details['arrival_time']['value']
-                                departure_time = transit_details['departure_time']['value']
                                 name = transit_details['line']['name']
                                 if name == 'Metro Rail Red Line':
+                                    arrival_time = transit_details['arrival_time']['value']
+                                    departure_time = transit_details['departure_time']['value']
                                     break
     arrival_timestamp = get_timezone(arrival_time) if arrival_time is not None else None
     departure_timestamp = get_timezone(departure_time) if departure_time is not None else None
