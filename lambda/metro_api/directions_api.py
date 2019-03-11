@@ -53,6 +53,15 @@ def get_relevant_metro_times(response):
             'day_indicator': day_time}
 
 
+def get_walking(response):
+    time_seconds = None
+    for d in response:
+        if 'legs' in d and type(d['legs']) == list:
+            for leg in d['legs']:
+                time_seconds = leg['duration']['value']
+    return time_seconds
+
+
 def log():
     logging.basicConfig()
     logger = logging.getLogger('metro-rail-info')
@@ -82,11 +91,26 @@ def main(location="Austin Convention Center"):
         log().error('Could not run: {}'.format(e))
         final_response = None
 
+    second_train = None
+    if final_response and final_response.get('departure_time_epoch'):
+        response = gmap_client.directions(departing_station, location, mode="transit", transit_mode='rail',
+                                          departure_time=final_response['departure_time_epoch'] + 60)
+        second_train = get_relevant_metro_times(response)
+        second_train['departing_station'] = departing_station
+        second_train['arrival_station'] = location
+
+    # walking directions
+    walking = gmap_client.directions('801 Sugaree Ave', departing_station, mode="walking", departure_time=now)
+    walking_seconds = get_walking(walking)
+
+    time_to_get_there = {'relative': get_timezone(final_response['arrival_time_epoch'] - walking_seconds - (60 * 5)),
+                         'epoch': final_response['arrival_time_epoch'] - walking_seconds - (60 * 5)}
+
     log().info('Alexa Response: {}'.format(final_response))
     end = time.time() - start
     log().info('Time to run {} seconds'.format(end))
-    return final_response
+    return final_response, second_train, time_to_get_there
 
 
 if __name__ == "__main__":
-    main('Plaza Saltillo')
+    main()
