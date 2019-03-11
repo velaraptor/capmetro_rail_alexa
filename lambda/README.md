@@ -1,5 +1,5 @@
 # Metro Rail Indicator
-![icon](icon.png?raw=true)
+![icon](icon.png?raw=true) ![alexaicon](https://camo.githubusercontent.com/a1e42871d6cd7bde5f7a4fb04361c6921ee8bc47/68747470733a2f2f6d2e6d656469612d616d617a6f6e2e636f6d2f696d616765732f472f30312f6d6f62696c652d617070732f6465782f6176732f646f63732f75782f6272616e64696e672f6d61726b312e5f5454485f2e706e67)
 ### Table of Contents
 
 - [Project Description](#project-description)
