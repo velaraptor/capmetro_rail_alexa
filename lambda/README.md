@@ -1,5 +1,5 @@
 # Metro Rail Indicator
-
+![icon](icon.png?raw=true)
 ### Table of Contents
 
 - [Project Description](#project-description)
