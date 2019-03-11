@@ -2,10 +2,10 @@
 
 ### Table of Contents
 
-- [Project Description] Project Description
-- [Roadmap] Roadmap
-- [Use] Use
-- [Requirements] Requirements
+- [Project Description](#project-description)
+- [Roadmap](#roadmap)
+- [Use](#use)
+- [Requirements](#requirements)
 
 ## Project Description
 Alexa skill that allows a user to ask when the next <b>two</b> Austin Capmetro MetroRail trains will leave from a specific station.
