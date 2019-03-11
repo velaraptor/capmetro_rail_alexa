@@ -3,3 +3,5 @@
 __pycache__/*
 lambda/.DS_Store
 .DS_Store
+
+*.pyc
