@@ -32,6 +32,9 @@
                         }
                     ],
                     "samples": [
+                        "When does the next train depart {dep_station}",
+                        "Give me the next train departing {dep_station}",
+                        "Give me the next train departing from {dep_station}",
                         "Give me the next train leaving from {dep_station}",
                         "When does the next train leave from {dep_station}  and arrive at {arr_station}",
                         "When does the next train leave from {dep_station}",

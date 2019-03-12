@@ -17,7 +17,7 @@ ERROR = "Uh Oh. Looks like something went wrong."
 TIME_ZONE_ID = 'America/Chicago'
 
 METRO_STATIONS = {
-    'DWT': 'Austin Downtown Station',
+    'DWT': 'Austin Convention Center',
     'PLAS': 'Plaza Saltillo',
     'MLK': 'MLK Station',
     'HIGH': 'Highland Station',
