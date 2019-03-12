@@ -29,3 +29,7 @@ To run this yourself you will need the following:
 * AWS account and have Lambda and Cloudwatch
 * Alexa Developer Account
 * Google Developer Console with Maps API implemented 
+
+## Author
+Chris Vela
+info@christophvel.com
