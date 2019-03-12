@@ -12,9 +12,8 @@ Alexa skill that allows a user to ask when the next <b>two</b> Austin Capmetro M
 Allows the user to set a reminder and also allows to get walking distance estimate to the station to make it in time.
 
 ## Roadmap
-* Add ability to use Alexa users address to compute walking distance
-* Add ability to try to get multiple stations
-* Use predictive analytics to give the best time to remind user to leave
+* Add ability to use Alexa users address to compute walking distance [X]
+* Add ability to try to get multiple stations [X]
 
 ## Use
 
