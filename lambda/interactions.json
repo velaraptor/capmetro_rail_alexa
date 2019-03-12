@@ -21,8 +21,21 @@
                 },
                 {
                     "name": "TimesIntent",
-                    "slots": [],
+                    "slots": [
+                        {
+                            "name": "dep_station",
+                            "type": "AMAZON.LandmarksOrHistoricalBuildings"
+                        },
+                        {
+                            "name": "arr_station",
+                            "type": "AMAZON.LandmarksOrHistoricalBuildings"
+                        }
+                    ],
                     "samples": [
+                        "Give me the next train leaving from {dep_station}",
+                        "When does the next train leave from {dep_station}  and arrive at {arr_station}",
+                        "When does the next train leave from {dep_station}",
+                        "When does the next train depart from {dep_station}",
                         "When is the next train arriving",
                         "Give me the next train",
                         "When does the next train depart"
@@ -42,7 +55,96 @@
                     ]
                 }
             ],
-            "types": []
+            "types": [
+                {
+                    "name": "AMAZON.LandmarksOrHistoricalBuildings",
+                    "values": [
+                        {
+                            "id": "LEA",
+                            "name": {
+                                "value": "Leander Station",
+                                "synonyms": [
+                                    "Leander"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "LAKE",
+                            "name": {
+                                "value": "Lakeline Station",
+                                "synonyms": [
+                                    "Lakeline"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "HOW",
+                            "name": {
+                                "value": "Howard Station",
+                                "synonyms": [
+                                    "Howard"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "KRA",
+                            "name": {
+                                "value": "Kramer Station",
+                                "synonyms": [
+                                    "Domain"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "CRE",
+                            "name": {
+                                "value": "Crestview Station",
+                                "synonyms": [
+                                    "Crestview"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "HIGH",
+                            "name": {
+                                "value": "Highland Station",
+                                "synonyms": [
+                                    "Highland",
+                                    "ACC"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "MLK",
+                            "name": {
+                                "value": "MLK Station",
+                                "synonyms": [
+                                    "MLK"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "PLAS",
+                            "name": {
+                                "value": "Plaza Saltillo",
+                                "synonyms": [
+                                    "East Sixth"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "DWT",
+                            "name": {
+                                "value": "Austin Downtown Station",
+                                "synonyms": [
+                                    "Downtown",
+                                    "Austin Convention Center"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     }
 }

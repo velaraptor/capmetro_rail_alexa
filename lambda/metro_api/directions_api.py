@@ -69,9 +69,8 @@ def log():
     return logger
 
 
-def main(location="Austin Convention Center"):
+def get_train(location="Austin Convention Center", departing_station='Crestview Station', home_address='801 Sugaree Ave'):
     start = time.time()
-    departing_station = "Crestview Station"
     log().info('Running metro rail info')
     key = os.getenv('API_KEY')
     gmap_client = googlemaps.Client(key=key)
@@ -100,11 +99,11 @@ def main(location="Austin Convention Center"):
         second_train['arrival_station'] = location
 
     # walking directions
-    walking = gmap_client.directions('801 Sugaree Ave', departing_station, mode="walking", departure_time=now)
+    walking = gmap_client.directions(home_address, departing_station, mode="walking", departure_time=now)
     walking_seconds = get_walking(walking)
 
-    time_to_get_there = {'relative': get_timezone(final_response['arrival_time_epoch'] - walking_seconds - (60 * 5)),
-                         'epoch': final_response['arrival_time_epoch'] - walking_seconds - (60 * 5)}
+    time_to_get_there = {'relative': get_timezone(final_response['departure_time_epoch'] - walking_seconds - (60 * 5)),
+                         'epoch': final_response['departure_time_epoch'] - walking_seconds - (60 * 5)}
 
     log().info('Alexa Response: {}'.format(final_response))
     end = time.time() - start
@@ -113,4 +112,4 @@ def main(location="Austin Convention Center"):
 
 
 if __name__ == "__main__":
-    main()
+    get_train()

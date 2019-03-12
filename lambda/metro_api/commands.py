@@ -9,16 +9,21 @@ ABOUT = _("CapMetro MetroRail is a commuter train in Austin..")
 STOP = _("Okay!")
 FALLBACK = _("The {} can't help you with that. It can help you get times for the MetroRail. What can I help you with?")
 GENERIC_REPROMPT = _("What can I help you with?")
+NOTIFY_MISSING_PERMISSIONS = ("Please enable Location permissions in "
+                              "the Amazon Alexa app.")
+NO_ADDRESS = ("It looks like you don't have an address set. "
+              "You can set your address from the companion app.")
+ERROR = "Uh Oh. Looks like something went wrong."
+TIME_ZONE_ID = 'America/Chicago'
 
-
-METRO_STATIONS = [
-    'Austin Downtown Station',
-    'Plaza Salitllo',
-    'MLK Station',
-    'Highland Station',
-    'Crestview Station',
-    'Kramer Station',
-    'Howard Station',
-    'Lakeline Station',
-    'Leander Station'
-]
+METRO_STATIONS = {
+    'DWT': 'Austin Downtown Station',
+    'PLAS': 'Plaza Saltillo',
+    'MLK': 'MLK Station',
+    'HIGH': 'Highland Station',
+    'CRE': 'Crestview Station',
+    'KRA': 'Kramer Station',
+    'HOW': 'Howard Station',
+    'LAKE': 'Lakeline Station',
+    'LEA': 'Leander Station'
+}
