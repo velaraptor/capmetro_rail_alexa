@@ -102,8 +102,9 @@ def get_train(location="Austin Convention Center", departing_station='Crestview 
     walking = gmap_client.directions(home_address, departing_station, mode="walking", departure_time=now)
     walking_seconds = get_walking(walking)
 
-    time_to_get_there = {'relative': get_timezone(final_response['departure_time_epoch'] - walking_seconds - (60 * 5)),
-                         'epoch': final_response['departure_time_epoch'] - walking_seconds - (60 * 5)}
+    rel = final_response.get('departure_time_epoch', datetime.now().timestamp())
+    time_to_get_there = {'relative': get_timezone(rel - walking_seconds - (60 * 5)),
+                         'epoch': rel - walking_seconds - (60 * 5)}
 
     log().info('Alexa Response: {}'.format(final_response))
     end = time.time() - start

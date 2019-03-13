@@ -21,7 +21,7 @@ Allows the user to set a reminder and also allows to get walking distance estima
 * <i>Alexa, ask metro rail to give me the next train.</i>
 * <i>Alexa, ask metro rail when is the next train arriving?</i>
 * <i>Alexa, ask metro rail when does the next train depart?</i>
-* <i><Alexa, ask metro rail to give me the next train departing from ACC</i>
+* <i>Alexa, ask metro rail to give me the next train departing from ACC</i>
   
 ## Requirements
 
