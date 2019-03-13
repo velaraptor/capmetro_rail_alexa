@@ -131,11 +131,12 @@ class NextTrainIntentHandler(AbstractRequestHandler):
             speech = 'Could not find times for that station.'
             set_reminder = False
 
-        check_2 = all(response[value] is None for value in second_train if value in ['arrival_time_epoch',
-                                                                                     'departure_time_epoch',
-                                                                                     'arrival_time_local',
-                                                                                     'departure_time_local',
-                                                                                     'day_indicator'])
+        check_2 = True
+        logger.info(second_train)
+        if second_train:
+            check_2 = all(response[value] is None for value in second_train if value in
+                          ['arrival_time_epoch', 'departure_time_epoch', 'arrival_time_local',
+                           'departure_time_local', 'day_indicator'])
         if not check_2:
             second_train_speech = ' After this the next {line} will leave at {departure_time_local}'.format(
                 **second_train)

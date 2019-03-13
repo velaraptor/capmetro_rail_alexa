@@ -103,6 +103,8 @@ def get_train(location="Austin Convention Center", departing_station='Crestview 
     walking_seconds = get_walking(walking)
 
     rel = final_response.get('departure_time_epoch', datetime.now().timestamp())
+    rel = rel if rel is not None else datetime.now().timestamp()
+    log().info('rel: {}, walking_seconds {}'.format(rel, walking_seconds))
     time_to_get_there = {'relative': get_timezone(rel - walking_seconds - (60 * 5)),
                          'epoch': rel - walking_seconds - (60 * 5)}
 
